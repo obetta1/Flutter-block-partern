@@ -66,9 +66,6 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
                           CarSpecTile(
                             carDetails: state.carDetails,
                           ),
-                          CarFeatureTile(
-                            feature: state.carDetails.features!,
-                          )
                         ],
                       );
                     } else if (state is CarDetailsError) {
