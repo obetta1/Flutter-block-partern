@@ -60,7 +60,7 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
                             height: h,
                             carDetails: state.carDetails,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           CarSpecTile(
