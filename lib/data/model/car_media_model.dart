@@ -45,7 +45,7 @@ class CarMediaList {
         name: json["name"],
         url: json["url"],
         createdAt: json["createdAt"],
-        type: typeValues.map[json["type"]]!,
+        // type: typeValues.map[json["type"]]!,
       );
 
   Map<String, dynamic> toJson() => {

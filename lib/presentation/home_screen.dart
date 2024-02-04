@@ -92,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          CustomTextWithBorder(
+                                          const CustomTextWithBorder(
                                             text: 'Popular Brands',
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold,
@@ -118,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(6.0),
-                                                        boxShadow: [
+                                                        boxShadow: const [
                                                           BoxShadow(
                                                             color:
                                                                 Colors.black26,

@@ -78,6 +78,10 @@ class CustomSearchField extends StatelessWidget {
               width: 2.0,
             ),
           ),
+          child: Icon(
+            Icons.edit,
+            color: AppColors.yellow,
+          ),
         )
       ],
     );

@@ -5,6 +5,7 @@ import 'package:auto_ch_tech_assesment/presentation/bloc/popular_car_makes/popul
 import 'package:dio/dio.dart';
 
 import '../../core/app_export.dart';
+import '../../core/utils/utils.dart';
 import '../url_config.dart';
 import 'network_interceptor.dart';
 
@@ -30,6 +31,8 @@ class ApiClient {
   ///returns [bool] based on availability of internet
   Future isNetworkConnected() async {
     if (!await NetworkInfo().isConnected()) {
+      showSnackbar(
+          'INTERNET ERROR', "No Internet Found!please check your internet ");
       throw NoInternetException('No Internet Found!');
     }
   }
@@ -81,7 +84,7 @@ class ApiClient {
   Future<AllCarModel> getAllCars() async {
     ProgressDialogUtils.showProgressDialog();
     try {
-      //await isNetworkConnected();
+      await isNetworkConnected();
       var response = await _dio.get(
         '$baseUrl${UrlConfig.allCars}',
         options: Options(
@@ -112,10 +115,11 @@ class ApiClient {
   /// Throws an error if the request fails or an exception occurs.
   Future<CarMediaModel> getCarMedia(String id) async {
     ProgressDialogUtils.showProgressDialog();
+    final String iiid = "R1nVTV4Mj";
     try {
       //await isNetworkConnected();
       var response = await _dio.get(
-        '$baseUrl${UrlConfig.carsMediaPage}{$id}',
+        '$baseUrl${UrlConfig.carsMediaPage}$iiid',
         options: Options(
           responseType: ResponseType.json,
         ),

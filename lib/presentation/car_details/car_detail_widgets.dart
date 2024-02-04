@@ -1,10 +1,14 @@
 import 'package:auto_ch_tech_assesment/data/model/car_details_model.dart';
+import 'package:auto_ch_tech_assesment/presentation/car_details/car_media_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/utils.dart';
 import '../../data/model/all_car_model.dart';
+import '../../widgets/custom_buttons.dart';
 import '../../widgets/custom_text.dart';
 
 ///this is used for display the car image on the details screen
@@ -35,15 +39,14 @@ class CarDetailImageCard extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        InkWell(
-          onTap: () {
-            //TODO
-          },
-          child: Container(
-            height: 20,
-            width: width,
-            color: AppColors.grey,
-            child: const Text("View Car galary"),
+        Align(
+          alignment: Alignment.topRight,
+          child: CustomButton(
+            color: AppColors.yellow,
+            onPressed: () {
+              Get.to(CarMediaScreen(carId: carDetails.id!));
+            },
+            text: 'View Car Media',
           ),
         ),
         Padding(

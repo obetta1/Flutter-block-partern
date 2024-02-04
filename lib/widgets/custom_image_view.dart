@@ -6,6 +6,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../core/utils/utils.dart';
+
 class CustomImageView extends StatelessWidget {
   ///[imagePath] is required parameter for showing image
   String? imagePath;
@@ -160,3 +162,30 @@ extension ImageTypeExtension on String {
 }
 
 enum ImageType { svg, png, network, file, unknown }
+
+class SvgAndImageView extends StatelessWidget {
+  final double? height;
+  final double? width;
+  final String url;
+  const SvgAndImageView(
+      {super.key, required this.url, this.height, this.width});
+
+  @override
+  Widget build(BuildContext context) {
+    if (url.endsWith(".svg")) {
+      return SvgPicture.network(
+        url,
+        height: height ?? 20,
+        width: width ?? 20,
+        placeholderBuilder: (BuildContextcontext) => showProgressBar(),
+      );
+    } else {
+      return CustomImageView(
+        height: height ?? 20,
+        width: width ?? 20,
+        radius: BorderRadius.circular(20),
+        imagePath: url,
+      );
+    }
+  }
+}

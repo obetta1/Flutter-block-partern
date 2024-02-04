@@ -40,8 +40,6 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
                   floating: false,
                   pinned: true,
                   flexibleSpace: FlexibleSpaceBar(
-                    title: Text('Explore'),
-                    centerTitle: true,
                     background: Container(
                       color: Colors
                           .white, // You can set your desired background color
@@ -83,23 +81,13 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
                 ]))
               ],
             ),
-            Positioned(
+            const Positioned(
               top: 0,
               left: 0,
               right: 0,
               child: CustomAppBar(
                 showIcon: true,
                 title: 'Explore',
-                leadingIcon: IconButton(
-                  iconSize: 30,
-                  onPressed: () {
-                    // Navigator.pushNamed(context, '/wishlist');
-                  },
-                  icon: Icon(
-                    Icons.grid_view_rounded,
-                    color: AppColors.black,
-                  ),
-                ),
               ),
             ),
           ],

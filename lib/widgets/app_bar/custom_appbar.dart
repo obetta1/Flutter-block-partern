@@ -7,12 +7,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     Key? key,
     required this.title,
     this.showIcon = true,
-    required this.leadingIcon,
+    this.leadingIcon,
   }) : super(key: key);
 
   final String title;
   final bool showIcon;
-  final IconButton leadingIcon;
+  final IconButton? leadingIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,17 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Row(
             children: [
-              leadingIcon,
+              leadingIcon ??
+                  IconButton(
+                    iconSize: 30,
+                    onPressed: () {
+                      // Navigator.pushNamed(context, '/wishlist');
+                    },
+                    icon: Icon(
+                      Icons.grid_view_rounded,
+                      color: AppColors.black,
+                    ),
+                  ),
               SizedBox(width: 10),
               Align(
                 alignment: Alignment.topLeft,
