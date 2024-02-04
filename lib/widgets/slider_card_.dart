@@ -1,47 +1,55 @@
 import 'package:auto_ch_tech_assesment/core/theme/app_colors.dart';
 import 'package:auto_ch_tech_assesment/core/utils/utils.dart';
 import 'package:auto_ch_tech_assesment/data/model/all_car_model.dart';
+import 'package:auto_ch_tech_assesment/presentation/car_details/car_details_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import 'custom_buttons.dart';
 import 'custom_text.dart';
 
 class CardDouble extends StatelessWidget {
+  final Function()? onTap;
   final Result? carList;
-  const CardDouble({Key? key, required this.carList}) : super(key: key);
+  const CardDouble({Key? key, required this.carList, this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 400.0,
-      child: IntrinsicHeight(
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Positioned(
-              top: 100.0,
-              left: 20,
-              right: 20,
-              child: RoundedCard(
-                carList: carList!,
-                color: Colors.white,
-                width: MediaQuery.of(context).size.width - 40,
-                height: 350.0,
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        height: 400.0,
+        child: IntrinsicHeight(
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Positioned(
+                top: 100.0,
+                left: 20,
+                right: 20,
+                child: RoundedCard(
+                  carList: carList!,
+                  color: Colors.white,
+                  width: MediaQuery.of(context).size.width - 40,
+                  height: 350.0,
+                ),
               ),
-            ),
-            Positioned(
-              top: 10.0,
-              left: 30.0,
-              right: 30.0,
-              child: ImageRoundedCard(
-                color: AppColors.white,
-                width: MediaQuery.of(context).size.width - 55,
-                height: 250.0,
-                imageUrl: carList?.imageUrl,
+              Positioned(
+                top: 10.0,
+                left: 30.0,
+                right: 30.0,
+                child: ImageRoundedCard(
+                  color: AppColors.white,
+                  width: MediaQuery.of(context).size.width - 55,
+                  height: 250.0,
+                  imageUrl: carList?.imageUrl,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -195,7 +203,9 @@ class RoundedCard extends StatelessWidget {
                         height: 10,
                       ),
                       CustomButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(CarDetailsScreen(carId: carList.id!));
+                        },
                         text: 'Pay Cash',
                         color: AppColors.white,
                         borderColor: AppColors.black,
@@ -219,7 +229,9 @@ class RoundedCard extends StatelessWidget {
                       ),
                       CustomButton(
                         color: AppColors.yellow,
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(CarDetailsScreen(carId: carList.id!));
+                        },
                         text: 'Buy On Loan',
                       )
                     ],
