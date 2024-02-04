@@ -249,11 +249,24 @@ extension TransmissionExtension on Transmission {
   }
 }
 
+String formatEnumString(Enum enumValue) {
+  String stringValue = enumValue.toStringValue();
+  return stringValue.isNotEmpty
+      ? stringValue[0].toUpperCase() + stringValue.substring(1)
+      : stringValue;
+}
+
 final transmissionValues = EnumValues({
   "automatic": Transmission.AUTOMATIC,
   "duplex": Transmission.DUPLEX,
   "manual": Transmission.MANUAL
 });
+
+extension EnumToString on Enum {
+  String toStringValue() {
+    return this.toString().split('.').last.toLowerCase();
+  }
+}
 
 class EnumValues<T> {
   Map<String, T> map;

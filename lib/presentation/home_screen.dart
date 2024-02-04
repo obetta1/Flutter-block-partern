@@ -1,4 +1,5 @@
 import 'package:auto_ch_tech_assesment/core/theme/app_colors.dart';
+import 'package:auto_ch_tech_assesment/core/utils/utils.dart';
 import 'package:auto_ch_tech_assesment/domain/repository/repository.dart';
 import 'package:auto_ch_tech_assesment/domain/usecase/all_car_usecase.dart';
 import 'package:auto_ch_tech_assesment/domain/usecase/popular_make_usecase.dart';
@@ -68,24 +69,18 @@ class _HomeScreenState extends State<HomeScreen> {
                           print('Received state: $state');
 
                           if (state is PopularCarMakeLoading) {
-                            return CircularProgressIndicator.adaptive(
-                              strokeWidth: 4,
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                AppColors.purple,
-                              ),
-                            );
+                            return showProgressBar();
                           } else if (state is PopularCarMakeLoaded) {
                             return Column(
                               children: [
                                 Column(
                                   children: [
                                     Container(
-                                      // Your CustomAppBar Container
                                       decoration: BoxDecoration(
                                         color: AppColors.white,
                                         borderRadius:
                                             BorderRadius.circular(16.0),
-                                        boxShadow: [
+                                        boxShadow: const [
                                           BoxShadow(
                                             color: Colors.black26,
                                             offset: Offset(0.0, 2.0),
@@ -107,10 +102,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                             padding: const EdgeInsets.symmetric(
                                                 horizontal: 28.0, vertical: 10),
                                             child: Wrap(
-                                              spacing:
-                                                  10.0, // Adjust the spacing between items
-                                              runSpacing:
-                                                  8.0, // Adjust the spacing between rows
+                                              spacing: 10.0,
+                                              runSpacing: 8.0,
                                               children: List.generate(
                                                 state.makeList.length,
                                                 (index) {
@@ -148,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                           placeholderBuilder:
                                                               (BuildContext
                                                                       context) =>
-                                                                  CircularProgressIndicator(),
+                                                                  showProgressBar(),
                                                         ),
                                                       ),
                                                     );
@@ -161,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(6.0),
-                                                        boxShadow: [
+                                                        boxShadow: const [
                                                           BoxShadow(
                                                             color:
                                                                 Colors.black26,
@@ -198,7 +191,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                       height: 20,
                                     ),
                                     CustomCarousel(),
-                                    // ProductCardCarousel(makes: state.makeList),
                                   ],
                                 ),
                               ],
@@ -218,7 +210,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-            // CustomAppBar widget is positioned outside the CustomScrollView
+
+            /// CustomAppBar widget is positioned outside the CustomScrollView
             Positioned(
               top: 0,
               left: 0,
@@ -247,191 +240,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-//
-// class HomeScreen extends StatefulWidget {
-//   const HomeScreen({super.key});
-//
-//   @override
-//   State<HomeScreen> createState() => _HomeScreenState();
-// }
-//
-// class _HomeScreenState extends State<HomeScreen> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: MultiBlocProvider(
-//         providers: [
-//           BlocProvider(
-//             create: (context) => PopularCarMakeBloc(
-//                 getPopularCarMakeUsecase:
-//                     PopularCarMakeUseCase(repository: Repository()))
-//               ..add(LoadPopularCarMakeEvent()),
-//           ),
-//           BlocProvider(
-//             create: (context) =>
-//                 AllCarBloc(AllCarUseCase(Repository()))..add(LoadAllCarEvent()),
-//           ),
-//         ],
-//         child: SingleChildScrollView(
-//           // Wrap with SingleChildScrollView
-//           child: Column(
-//             children: [
-//               CustomAppBar(
-//                 showIcon: true,
-//                 title: 'Explore',
-//                 leadingIcon: IconButton(
-//                   iconSize: 30,
-//                   onPressed: () {
-//                     // Navigator.pushNamed(context, '/wishlist');
-//                   },
-//                   icon: Icon(
-//                     Icons.grid_view_rounded,
-//                     color: AppColors.black,
-//                   ),
-//                 ),
-//               ),
-//               CustomSearchField(),
-//               SizedBox(
-//                 height: 20,
-//               ),
-//               BlocBuilder<PopularCarMakeBloc, PopularCarMakeState>(
-//                 builder: (context, state) {
-//                   print('Received state: $state');
-//
-//                   if (state is PopularCarMakeLoading) {
-//                     return CircularProgressIndicator.adaptive(
-//                       strokeWidth: 4,
-//                       valueColor: AlwaysStoppedAnimation<Color>(
-//                         AppColors.purple,
-//                       ),
-//                     );
-//                   } else if (state is PopularCarMakeLoaded) {
-//                     return Column(children: [
-//                       Column(
-//                         children: [
-//                           Container(
-//                             decoration: BoxDecoration(
-//                               color: AppColors.white,
-//                               borderRadius: BorderRadius.circular(16.0),
-//                               boxShadow: [
-//                                 BoxShadow(
-//                                   color: Colors.black26,
-//                                   offset: Offset(0.0, 2.0),
-//                                   blurRadius: 4.0,
-//                                 ),
-//                               ],
-//                             ),
-//                             child: Column(
-//                               crossAxisAlignment: CrossAxisAlignment.start,
-//                               children: [
-//                                 CustomTextWithBorder(
-//                                   text: 'Popular Brands',
-//                                   fontSize: 14,
-//                                   fontWeight: FontWeight.bold,
-//                                   bordderRadius: 5,
-//                                 ),
-//                                 Padding(
-//                                   padding: const EdgeInsets.symmetric(
-//                                       horizontal: 28.0, vertical: 10),
-//                                   child: Wrap(
-//                                     spacing:
-//                                         10.0, // Adjust the spacing between items
-//                                     runSpacing:
-//                                         8.0, // Adjust the spacing between rows
-//                                     children: List.generate(
-//                                       state.makeList.length,
-//                                       (index) {
-//                                         if (state.makeList[index].imageUrl!
-//                                             .endsWith(".svg")) {
-//                                           print(state.makeList[index].imageUrl);
-//                                           return Container(
-//                                             height: 50,
-//                                             width: 50,
-//                                             decoration: BoxDecoration(
-//                                               color: AppColors.white,
-//                                               borderRadius:
-//                                                   BorderRadius.circular(6.0),
-//                                               boxShadow: [
-//                                                 BoxShadow(
-//                                                   color: Colors.black26,
-//                                                   offset: Offset(0.0, 2.0),
-//                                                   blurRadius: 4.0,
-//                                                 ),
-//                                               ],
-//                                             ),
-//                                             child: Padding(
-//                                               padding:
-//                                                   const EdgeInsets.all(10.0),
-//                                               child: SvgPicture.network(
-//                                                 state.makeList[index].imageUrl!,
-//                                                 height: 20,
-//                                                 width: 20,
-//                                                 placeholderBuilder: (BuildContext
-//                                                         context) =>
-//                                                     CircularProgressIndicator(),
-//                                               ),
-//                                             ),
-//                                           );
-//                                         } else {
-//                                           return Container(
-//                                             height: 50,
-//                                             width: 50,
-//                                             decoration: BoxDecoration(
-//                                               color: AppColors.white,
-//                                               borderRadius:
-//                                                   BorderRadius.circular(6.0),
-//                                               boxShadow: [
-//                                                 BoxShadow(
-//                                                   color: Colors.black26,
-//                                                   offset: Offset(0.0, 2.0),
-//                                                   blurRadius: 4.0,
-//                                                 ),
-//                                               ],
-//                                             ),
-//                                             child: Padding(
-//                                               padding:
-//                                                   const EdgeInsets.all(10.0),
-//                                               child: CustomImageView(
-//                                                 height: 20,
-//                                                 width: 20,
-//                                                 radius:
-//                                                     BorderRadius.circular(20),
-//                                                 imagePath: state
-//                                                     .makeList[index].imageUrl,
-//                                               ),
-//                                             ),
-//                                           );
-//                                         }
-//                                       },
-//                                     ),
-//                                   ),
-//                                 ),
-//                               ],
-//                             ),
-//                           ),
-//                           SizedBox(
-//                             height: 20,
-//                           ),
-//                           CustomCarousel(),
-//                           // ProductCardCarousel(makes: state.makeList),
-//                         ],
-//                       )
-//                     ]);
-//                   } else if (state is CarMakeError) {
-//                     return Center(child: Text('Error: ${state.errorMessage}'));
-//                   } else {
-//                     return Center(
-//                         child: Text('Unknown State: ${state.runtimeType}'));
-//                   }
-//                 },
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//       bottomNavigationBar: CustomBottomBar(
-//         onChanged: (home) {},
-//       ),
-//     );
-//   }
-// }

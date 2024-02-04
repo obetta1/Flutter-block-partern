@@ -106,7 +106,7 @@ class DefaultWidget extends StatelessWidget {
     return Container(
       color: Colors.white,
       padding: EdgeInsets.all(10),
-      child: Center(
+      child: const Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,

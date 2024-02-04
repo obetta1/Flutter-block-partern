@@ -133,7 +133,7 @@ class CarDetailsModel {
         interiorColor: json["interiorColor"],
         exteriorColor: json["exteriorColor"],
         engineType: json["engineType"],
-        gradeScore: json["gradeScore"],
+        // gradeScore: json["gradeScore"],
         installment: json["installment"]?.toDouble(),
         depositReceived: json["depositReceived"],
         loanValue: json["loanValue"]?.toDouble(),

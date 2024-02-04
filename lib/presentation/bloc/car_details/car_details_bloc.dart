@@ -18,7 +18,7 @@ class CarDetailsBloc extends Bloc<CarDetailsEvent, CarDetailsState> {
         try {
           emit(CarDetailsloading());
           final data = await carDetailsUseCase.execute(event.id);
-          emit(CarDetailsLoaded(makeList: data));
+          emit(CarDetailsLoaded(carDetails: data));
         } catch (err) {
           emit(const CarDetailsError(errorMessage: "Failed to load data"));
         }

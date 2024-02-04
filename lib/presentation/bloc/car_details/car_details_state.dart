@@ -15,12 +15,12 @@ class CarDetailsloading extends CarDetailsState {
 }
 
 class CarDetailsLoaded extends CarDetailsState {
-  final CarDetailsModel makeList;
+  final CarDetailsModel carDetails;
 
-  const CarDetailsLoaded({required this.makeList});
+  const CarDetailsLoaded({required this.carDetails});
 
   @override
-  List<Object> get props => [makeList];
+  List<Object> get props => [carDetails];
 }
 
 class CarDetailsError extends CarDetailsState {
