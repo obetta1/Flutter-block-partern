@@ -52,7 +52,7 @@ class ApiClient {
   Future<PopularCarMakes> getPopularCarMakes() async {
     ProgressDialogUtils.showProgressDialog();
     try {
-      await isNetworkConnected();
+      //await isNetworkConnected();
       var response = await _dio.get(
         '$baseUrl${UrlConfig.popularMakes}',
         options: Options(
@@ -84,7 +84,6 @@ class ApiClient {
   Future<AllCarModel> getAllCars() async {
     ProgressDialogUtils.showProgressDialog();
     try {
-      await isNetworkConnected();
       var response = await _dio.get(
         '$baseUrl${UrlConfig.allCars}',
         options: Options(
