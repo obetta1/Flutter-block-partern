@@ -38,8 +38,8 @@ void main() {
 
   testWidgets('HomeScreen renders correctly', (WidgetTester tester) async {
     // Arrange
-    when(() => mockAllCarBloc.state)
-        .thenReturn(AllCarLoaded(carList: [Result()]));
+    // when(() => mockAllCarBloc.state)
+    //     .thenReturn(AllCarLoaded(carList: [Result()]));
     when(() => mockPopularCarMakeBloc.state)
         .thenReturn(PopularCarMakeLoaded(makeList: [MakeList()]));
 

@@ -30,7 +30,7 @@ class ApiClient {
   ///method can be used for checking internet connection
   ///returns [bool] based on availability of internet
   Future isNetworkConnected() async {
-    if (await NetworkInfo().isConnected()) {
+    if (!await NetworkInfo().isConnected()) {
       showSnackbar(
           'INTERNET ERROR', "No Internet Found!please check your internet ");
       throw NoInternetException('No Internet Found!');
@@ -52,7 +52,7 @@ class ApiClient {
   Future<PopularCarMakes> getPopularCarMakes() async {
     ProgressDialogUtils.showProgressDialog();
     try {
-      //await isNetworkConnected();
+      await isNetworkConnected();
       var response = await _dio.get(
         '$baseUrl${UrlConfig.popularMakes}',
         options: Options(
@@ -84,6 +84,7 @@ class ApiClient {
   Future<AllCarModel> getAllCars() async {
     ProgressDialogUtils.showProgressDialog();
     try {
+      await isNetworkConnected();
       var response = await _dio.get(
         '$baseUrl${UrlConfig.allCars}',
         options: Options(
@@ -115,7 +116,7 @@ class ApiClient {
   Future<CarMediaModel> getCarMedia(String id) async {
     ProgressDialogUtils.showProgressDialog();
     try {
-      await isNetworkConnected();
+      //await isNetworkConnected();
       var response = await _dio.get(
         '$baseUrl${UrlConfig.carsMediaPage}$id',
         options: Options(

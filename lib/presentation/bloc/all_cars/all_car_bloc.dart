@@ -14,7 +14,7 @@ class AllCarBloc extends Bloc<AllCarEvent, AllCarState> {
 
   AllCarBloc(this.getAllCarUseCase) : super(AllCarInitial()) {
     on<LoadAllCarEvent>((event, emit) async {
-      print('bloc Received event: $event');
+      print('bloc Received event: ${event.props}');
       try {
         emit(AllCarLoading());
         final makeList = await getAllCarUseCase.execute();
