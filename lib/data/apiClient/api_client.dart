@@ -30,7 +30,7 @@ class ApiClient {
   ///method can be used for checking internet connection
   ///returns [bool] based on availability of internet
   Future isNetworkConnected() async {
-    if (!await NetworkInfo().isConnected()) {
+    if (await NetworkInfo().isConnected()) {
       showSnackbar(
           'INTERNET ERROR', "No Internet Found!please check your internet ");
       throw NoInternetException('No Internet Found!');
@@ -115,11 +115,10 @@ class ApiClient {
   /// Throws an error if the request fails or an exception occurs.
   Future<CarMediaModel> getCarMedia(String id) async {
     ProgressDialogUtils.showProgressDialog();
-    final String iiid = "R1nVTV4Mj";
     try {
-      //await isNetworkConnected();
+      await isNetworkConnected();
       var response = await _dio.get(
-        '$baseUrl${UrlConfig.carsMediaPage}$iiid',
+        '$baseUrl${UrlConfig.carsMediaPage}$id',
         options: Options(
           responseType: ResponseType.json,
         ),

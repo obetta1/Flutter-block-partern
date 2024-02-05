@@ -42,7 +42,7 @@ class CarMediaScreen extends StatelessWidget {
                         aspectRatio: 1.5,
                         viewportFraction: 1,
                         enlargeCenterPage: true,
-                        autoPlayInterval: Duration(seconds: 20),
+                        autoPlayInterval: Duration(seconds: 5),
                         enlargeStrategy: CenterPageEnlargeStrategy.height),
                     items: state.makeList.map(
                       (med) {
@@ -97,7 +97,7 @@ class _NetworkImageWithVideoState extends State<NetworkImageWithVideo> {
     _videoController = VideoPlayerController.network(widget.videoUrl);
     _chewieController = ChewieController(
       videoPlayerController: _videoController,
-      aspectRatio: 16 / 9, // Adjust according to your video's aspect ratio
+      aspectRatio: 16 / 9,
       autoPlay: false,
       looping: false,
     );
