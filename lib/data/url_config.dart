@@ -1,5 +1,3 @@
-import 'package:auto_ch_tech_assesment/env/api_url.dart';
-
 enum UrlEnvironment { development, production }
 
 ///this is used to configure the url depending on the environment[development] or [production]
@@ -13,18 +11,18 @@ class UrlConfig {
   static get _baseUrl {
     switch (_environment) {
       case UrlEnvironment.development:
-        return ApiUrl.BASEURL;
+        return "https://api.staging.myautochek.com/v1";
 
       ///The [ApiUrl.BASEURL] is include in gitignore file
       case UrlEnvironment.production:
-        return ApiUrl.BASEURL;
+        return "https://api.staging.myautochek.com/v1";
 
       ///The [ApiUrl.BASEURL] is include in gitignore file
     }
   }
 
   static const String popularMakes = "/make?popular=true";
-  static const String allCars = "/car/search";
+  static const String allCars = "/car/search?country=NG";
   static const String carsDetailPage = "/car/";
   static const String carsMediaPage = "/car_media?carId=";
 }
