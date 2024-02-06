@@ -24,7 +24,7 @@ class UrlConfig {
   }
 
   static const String popularMakes = "/make?popular=true";
-  static const String allCars = "/car/search";
+  static const String allCars = "/car/search?country=NG";
   static const String carsDetailPage = "/car/";
   static const String carsMediaPage = "/car_media?carId=";
 }
